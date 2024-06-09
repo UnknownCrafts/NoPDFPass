@@ -11,7 +11,7 @@ savepath = pathlib.Path.home()
 def getfile():
     global filepath
     filepath = filedialog.askopenfilename()
-    
+
 def getdir():
     global savepath
     savepath = filedialog.askdirectory()
