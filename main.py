@@ -5,10 +5,14 @@ import os
 import pathlib
 import pikepdf
 
-
+'''
+Initiate filepath and savepath variables, filepath is for the pdf file/folder that needs decoding,
+meanwhile savepath is for the path where the decoded files are saved.
+'''
 filepath = ""
 savepath = str(pathlib.Path.home()) + "/Desktop/"
 
+# Helper Functions
 def getfile():
     global filepath
     filepath = filedialog.askopenfilename()
@@ -25,6 +29,7 @@ def retrieve_input():
     passd = textbox.get("1.0","end-1c").strip().split(",")
     root.destroy()
 
+# --GUI Code Starts Here--
 root = Tk()
 root.geometry('500x300')
 root.eval('tk::PlaceWindow . center')
@@ -59,7 +64,10 @@ current_save_location_label = Label(root, textvariable= save_path_label)
 current_save_location_label.pack()
 
 root.mainloop()
+# --GUI Code Ends Here--
 
+
+# Background functionality after the root window has been destroyed
 number_of_passwords = len(passd)
 
 isDir = os.path.isdir(filepath)
