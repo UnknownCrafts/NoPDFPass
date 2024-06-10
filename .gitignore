@@ -1,1 +1,6 @@
 *.pdf
+setup.py
+.eggs
+build
+dist
+.DS_store
