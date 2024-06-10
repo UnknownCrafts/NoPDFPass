@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
 from tkinter import filedialog
-import os
 import pathlib
 import pikepdf
 
@@ -15,7 +14,7 @@ savepath = str(pathlib.Path.home()) + "/Desktop/"
 # Helper Functions
 def getfile():
     global filepath
-    filepath = filedialog.askopenfilename()
+    filepath = filedialog.askopenfilenames(filetypes=[('Allowed Types', '*.pdf')])
     filepath_label.set(filepath)
 
 def getdir():
@@ -51,8 +50,8 @@ label.pack()
 textbox = Text(root, height=2, width=30)
 textbox.pack()
 
-open_button = Button(root, text="Open File/Folder to decrypt", command=getfile)
-open_button.pack()
+open_file_button = Button(root, text="Open File/Folder to decrypt", command=getfile)
+open_file_button.pack()
 
 current_chosen_file_or_folder_label = Label(root, textvariable= filepath_label)
 current_chosen_file_or_folder_label.pack()
@@ -70,10 +69,15 @@ root.mainloop()
 # Background functionality after the root window has been destroyed
 number_of_passwords = len(passd)
 
-isDir = os.path.isdir(filepath)
-
 if passd[0] != '':
 
-    if not isDir:
-        with pikepdf.open(filepath,password=passd[0]) as pdf:
-            pdf.save(savepath + 'output.pdf')
+    for x in filepath:
+        for i in range(number_of_passwords):
+            try:
+                file_name = x.split("/")
+                file_name = file_name[-1]
+                with pikepdf.open(x,password=passd[i]) as pdf:
+                    pdf.save(savepath + file_name)
+                break
+            except:
+                pass
