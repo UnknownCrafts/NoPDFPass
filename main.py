@@ -76,7 +76,7 @@ if passd[0] != '':
             try:
                 file_name = x.split("/")
                 file_name = file_name[-1]
-                with pikepdf.open(x,password=passd[i]) as pdf:
+                with pikepdf.open(x,password=passd[i].strip()) as pdf:
                     pdf.save(savepath + file_name)
                 break
             except:
