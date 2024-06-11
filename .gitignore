@@ -1,5 +1,4 @@
 *.pdf
-setup.py
 .eggs
 build
 dist
