@@ -32,7 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['/Users/sv/Desktop/Dev_related/NoPDFPass/NoPDFPass/images/icon.icns'],
+    icon=['images/icon.icns'],
 )
 coll = COLLECT(
     exe,
@@ -46,6 +46,6 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='NoPDFPass.app',
-    icon='/Users/sv/Desktop/Dev_related/NoPDFPass/NoPDFPass/images/icon.icns',
+    icon='./images/icon.icns',
     bundle_identifier=None,
 )
